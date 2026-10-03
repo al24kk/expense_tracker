@@ -1,3 +1,4 @@
+# Personal expense tracker
 import csv
 import os
 from datetime import datetime
