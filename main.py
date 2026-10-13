@@ -49,23 +49,38 @@ def view_expences():
     for expense in expences[1:]:
         date, category, amount, description = expense
         print(f"{date} | {category} | {amount} | {description}")
-
+def show_total():
+    total = 0
+    
+    with open(FILE_NAME, "r", newline="", encoding="utf-8") as file:
+        reader = csv.reader(file)
+        next(reader, None)
+        
+        for expense in reader:
+            amount = float(expense[2])
+            total += amount
+            
+        print(f"\nTotal expense: {total:.2f}")    
+            
 def show_menu():
     while True:
         print("\n=== expense tracker ===")
         print("1. add an expense")
-        print("2. exit")
-        print("3. view all expenses")
+        print("2. view all expenses")
+        print("3. show total expenses")
+        print("4. exit")
         
         choice = input("choose an option: ")
         
         if choice == "1":
             add_expense()
         elif choice == "2":
+            view_expences()
+        elif choice == "3":
+            show_total()
+        elif choice == "4":
             print("goodbye!")
             break
-        elif choice == "3":
-            view_expences()
         else:
             print("invalid choice. please choose 1 or 2")
       
